@@ -67,6 +67,7 @@ def SA(init_sol,num_pair,cur_best,ini_len):
             current_sol = init_sol[:]
             current_profit=cur_best
             init_sol=perturbation(locList)
+            #print(current_sol,init_sol)
             depa = Fb.depature
             if init_sol==-1:
                 init_sol=current_sol[:]

@@ -97,6 +97,7 @@ def Heuris(cur_pro, init_sol,dur):
         print("yeah,swap works  ", tmp_sol, '\n', " ----->> ", init_sol, "\n" + "best profit", cur_pro,
               '\n' + "departure time", glo_de)
 
+
     # local search -- relocate
     tmp_pro, tmp_sol = cur_pro, init_sol
     dur, init_sol, cur_pro = intra_relocate.relocate(init_sol, num_pair, cur_pro, dur)
@@ -120,6 +121,8 @@ def Heuris(cur_pro, init_sol,dur):
         glo_de = localsearch.glo_de
         print("yeah,Tabu works  ", tmp_sol, '\n', " ----->> ", init_sol, "\n" + "best profit",cur_pro,
               '\n' + "departure time", glo_de)
+    ck, dur = Fb.check(init_sol)
+    cur_pro = (len(init_sol) / 2 - 1) * Profit - dur
     return dur,init_sol,cur_pro
 
         #ALNS_VND.ALNS(init_sol, len(last_sol), num_pair, last_best,dur)
@@ -138,11 +141,12 @@ if __name__=='__main__':
         for j in range(num_pair - i):
             box.append(rank[i][1])
     # print(len(rank),num_pair,box)
-    num_initial = 10
+    num_initial =10
     step, cur_longest = 0, 0
     ans_pro = -1000000
     start = time.perf_counter()
     while num_initial > 0:  # generate 10 initial solution
+
         end = time.perf_counter()
         if end - start > 3 * num_pair:
             print("Time out !!! Stop")
@@ -177,7 +181,7 @@ if __name__=='__main__':
 
         if ini_s in map:
             continue
-        with open('sol.txt', 'w') as f:
+        with open('sol.txt', 'a') as f:
             for i in init_sol:
                 # print(i[0],end = " ")
                 f.write(str(i[0]))
@@ -188,7 +192,7 @@ if __name__=='__main__':
         ck, dur = Fb.check(init_sol)
         pro_best = (len(init_sol) / 2 - 1) * Profit - dur
         #start to opt
-
+        "'init_sol,pro_best"''
         dur, init_sol, pro_best = Heuris(pro_best, init_sol, dur)
 
         if len(init_sol) > 6:
@@ -200,6 +204,7 @@ if __name__=='__main__':
             ck, dur = Fb.check(init_sol)
             pro_best = (len(init_sol) / 2 - 1) * Profit - dur
             de = Fb.depature
+
         if pro_best > ans_pro:
             last_sol = init_sol
             last_dur = dur

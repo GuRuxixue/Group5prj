@@ -38,7 +38,7 @@ speedprofile={
     "speed":""
 }'''
 speedMatrix=[]
-with open('../rawdata/FProb-35A.txt','r',encoding='utf8') as f:
+with open('../rawdata/FProb-70A.txt','r',encoding='utf8') as f:
     cont = True
     c=0
     li = []
