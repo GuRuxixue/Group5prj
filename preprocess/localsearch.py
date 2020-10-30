@@ -144,7 +144,6 @@ def Tabu(init_sol,num_pair,cur_best,ini_len):
         sorted_neighbors = sorted(neighbors.items(), key=lambda item: item[1],reverse=True)
         nid_i = nid_j = 0
         flag = 0
-        current_sol = init_sol[:]
         #print("sorted_neighbors",sorted_neighbors)
         #print(neighbors,p_neighbors)
         for neighbor in sorted_neighbors:
